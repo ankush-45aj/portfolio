@@ -1,0 +1,200 @@
+.spline-footer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.spline-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+.fallback-scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 70%);
+  overflow: hidden;
+}
+
+.robot-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 300px;
+}
+
+.robot-head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.robot-body {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+}
+
+.robot-arm {
+  position: absolute;
+  top: 120px;
+  width: 40px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  animation: wave 2s ease-in-out infinite;
+}
+
+.robot-arm.left {
+  left: calc(50% - 100px);
+  animation-delay: -1s;
+}
+
+.robot-arm.right {
+  right: calc(50% - 100px);
+}
+
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-element {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  animation: floatElement 10s ease-in-out infinite;
+}
+
+.ai-bubble {
+  position: absolute;
+  bottom: 20%;
+  right: 10%;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+
+.footer-content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  margin-top: 340px; /* push below robot (robot height + some space) */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer-content p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin-bottom: 2rem;
+  opacity: 0.8;
+  letter-spacing: 0.02em;
+}
+.footer-content span {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  letter-spacing: 0.05em;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-20px); }
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-20deg); }
+  75% { transform: rotate(20deg); }
+}
+
+@keyframes floatElement {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
+  50% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
+}
+
+@media (max-width: 768px) {
+  .ai-bubble {
+    width: 60px;
+    height: 60px;
+    right: 5%;
+    bottom: 15%;
+  }
+  
+  .bubble-emoji {
+    font-size: 1.5rem;
+  }
+  
+  .chat-box {
+    font-size: 0.8rem;
+    padding: 10px 12px;
+    max-width: 150px;
+  }
+}
