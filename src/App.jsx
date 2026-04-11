@@ -8,24 +8,31 @@ import Skills from "./sections/Skills";
 import Project from "./sections/Project";
 import Contact from "./sections/Contact";
 import SplineFooter from "./sections/Footer";
-// import Experience from "./sections/Experience";
-// import Testimonials from "./sections/Testimonials";
 
 export default function App() {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(
+    !sessionStorage.getItem("introPlayed")
+  );
+
+  const handleFinish = () => {
+    sessionStorage.setItem("introPlayed", "true");
+    setShowIntro(false);
+  };
+
   return (
     <div className="relative gradient text-white min-h-screen">
+      {/* MAIN CONTENT ALWAYS RENDERED */}
       <CustomCursor />
       <Navbar />
       <Home />
       <About />
       <Skills />
       <Project />
-      {/* <Experience /> */}
-      {/* <Testimonials /> */}
       <Contact />
       <SplineFooter />
-      {showIntro && <IntroAnimation onFinish={() => setShowIntro(false)} />}
+
+      {/* INTRO OVERLAY */}
+      {showIntro && <IntroAnimation onFinish={handleFinish} />}
     </div>
   );
 }

@@ -71,7 +71,7 @@ h1, h2 {
   justify-content: center;
   padding: clamp(0.75rem, 3vw, 1rem) clamp(1.5rem, 5vw, 1.75rem);
   border-radius: 2rem;
-  background: linear-gradient(135deg, #00f2ff4f, #5773ff);
+  background: linear-gradient(135deg, #cf0a94ec, #d82898);
   color: #fff;
   font-weight: 600;
   border: none;

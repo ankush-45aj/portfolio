@@ -2,7 +2,7 @@ import React from "react";
 import { Typewriter } from "react-simple-typewriter";
 import ParticlesBackground from "../components/ParticlesBackground";
 import AnkushImg from "../assets/Ankush.png";
-import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import { FaXTwitter, FaLinkedinIn, FaGithub, FaInstagram } from "react-icons/fa6";
 
 
 export default function Home() {
@@ -18,14 +18,14 @@ export default function Home() {
             <div className="absolute left-0 top-1/2 -translate-y-1/2
                 w-[300px] h-[300px] rounded-full
                 bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2]
-                opacity-20 blur-[140px]"
+                opacity-20 blur-[60px]"
             ></div>
 
             {/* RIGHT Glowing Bulb */}
             <div className="absolute right-0 bottom-0
                 w-[300px] h-[400px] rounded-full
                 bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2]
-                opacity-20 blur-[150px]"
+                opacity-20 blur-[60px]"
             ></div>
 
             {/* MAIN CONTENT */}
@@ -67,14 +67,14 @@ export default function Home() {
                     </p>
 
                     {/* BUTTONS */}
-                    <div className="btn-group">
+                    <div className="btn-group from-pink-500 to-purple-600">
                         <button
                             onClick={() =>
                                 document.getElementById("projects").scrollIntoView({
                                     behavior: "auto",
                                 })
                             }
-                            className="primary-btn"
+                            className="primary-btn from-pink-500 to-purple-600"
                         >
                             View My Work
                         </button>
@@ -82,24 +82,24 @@ export default function Home() {
                         <a
                             href="/resume.pdf"
                             download
-                            className="primary-btn resume-btn"
+                            className="primary-btn resume-btn from-pink-500 to-purple-600"
                         >
                             Download Resume
                         </a>
                     </div>
                     <div className="social-icons">
-                        <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://x.com/ankushjha45" target="_blank" rel="noopener noreferrer">
                             <FaXTwitter />
                         </a>
-                        {/* <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
-                            <FaxInstagram />
-                        </a> */}
+                        <a href="https://www.instagram.com/_ankush_45/" target="_blank" rel="noopener noreferrer">
+                            <FaInstagram />
+                        </a>
 
-                        <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/ankush-jha-a04228376/" target="_blank" rel="noopener noreferrer">
                             <FaLinkedinIn />
                         </a>
 
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/ankush-45aj" target="_blank" rel="noopener noreferrer">
                             <FaGithub />
                         </a>
                     </div>

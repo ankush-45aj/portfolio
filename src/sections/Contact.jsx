@@ -72,28 +72,36 @@ export default function Contact() {
                         className="space-y-10"
                     >
                         {/* About Me Card */}
-                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-xl shadow-lg">
-                            <div className="flex items-center gap-3 mb-4">
-                                <Sparkles className="text-blue-500" />
-                                <h3 className="text-xl font-semibold">About Me</h3>
+                        <div className="group relative bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-blue-500/20 hover:scale-[1.02]">
+
+                            {/* Moving Light Overlay */}
+                            <div className="absolute inset-0 bg-black/90 transition-all duration-700 group-hover:translate-y-full"></div>
+
+                            <div className="relative z-10">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <Sparkles className="text-blue-500" />
+                                    <h3 className="text-xl font-semibold">About Me</h3>
+                                </div>
+
+                                <p className="text-gray-300 leading-relaxed transition-all duration-700">
+                                    I’m <span className="text-white font-medium">Ankush</span>, a passionate
+                                    <span className="text-blue-400"> full-stack developer</span> and AI & ML
+                                    engineering student. I love building modern web apps with clean UI,
+                                    smooth animations, and scalable backend logic.
+                                    <br /><br />
+                                    Currently focused on React, Node.js, and real-world projects that
+                                    create impact 🚀
+                                </p>
                             </div>
 
-                            <p className="text-gray-400 leading-relaxed">
-                                I’m <span className="text-white font-medium">Ankush</span>, a passionate
-                                <span className="text-blue-400"> full-stack developer</span> and AI & ML
-                                engineering student. I love building modern web apps with clean UI,
-                                smooth animations, and scalable backend logic.
-                                <br /><br />
-                                Currently focused on React, Node.js, and real-world projects that
-                                create impact 🚀
-                            </p>
                         </div>
+
 
                         {/* Contact Info */}
                         <div className="space-y-5 text-gray-300">
                             <div className="flex items-center gap-4">
                                 <Mail className="text-blue-500" />
-                                <span>ankush.dev@email.com</span>
+                                <span>jhaankush47@gmail.com</span>
                             </div>
                             <div className="flex items-center gap-4">
                                 <Phone className="text-green-500" />

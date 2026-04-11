@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import parallax from "../assets/image1.png";
+import portifolioImage from "../assets/portifolioImage.png"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,9 +98,9 @@ const projects = [
     {
         id: 4,
         title: "Portfolio",
-        image: "https://via.placeholder.com/500x300",
-        github: "https://github.com/yourname/portfolio",
-        live: "https://portfolio.live",
+        image: portifolioImage,
+        github: "github.com/ankush-45aj/portfolio",
+        live: "https://portfolio-gamma-sage-22.vercel.app/",
     },
 ];
 
