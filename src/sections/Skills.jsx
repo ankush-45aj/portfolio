@@ -204,18 +204,6 @@ export default function ParallaxSkillScroll() {
     return (
         <div ref={containerRef} className="relative w-full bg-black text-white font-sans selection:bg-amber-500 selection:text-black">
 
-            {/* Fixed Navigation */}
-            <nav className="fixed top-0 left-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference">
-                <div className="text-xs tracking-[0.3em] uppercase font-light">
-                    Portfolio <span className="opacity-50 ml-2">2025</span>
-                </div>
-                <div className="flex gap-8 text-[11px] tracking-widest uppercase">
-                    <span className="hover:text-amber-400 transition-colors cursor-pointer">Work</span>
-                    <span className="hover:text-amber-400 transition-colors cursor-pointer">About</span>
-                    <span className="hover:text-amber-400 transition-colors cursor-pointer">Contact</span>
-                </div>
-            </nav>
-
             {/* Skill Slides Container */}
             <div className="relative h-screen">
                 {skills.map((skill, i) => (
