@@ -67,14 +67,14 @@ export default function Home() {
                     </p>
 
                     {/* BUTTONS */}
-                    <div className="btn-group from-pink-500 to-purple-600">
+                    <div className="hero-buttons">
                         <button
                             onClick={() =>
                                 document.getElementById("projects").scrollIntoView({
-                                    behavior: "auto",
+                                    behavior: "smooth",
                                 })
                             }
-                            className="primary-btn from-pink-500 to-purple-600"
+                            className="primary-btn"
                         >
                             View My Work
                         </button>
@@ -82,7 +82,7 @@ export default function Home() {
                         <a
                             href="/resume.pdf"
                             download
-                            className="primary-btn resume-btn from-pink-500 to-purple-600"
+                            className="primary-btn"
                         >
                             Download Resume
                         </a>
@@ -135,4 +135,3 @@ export default function Home() {
         </section>
     );
 }
-

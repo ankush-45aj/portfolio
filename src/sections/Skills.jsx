@@ -99,20 +99,42 @@ export default function ParallaxSkillScroll() {
     const footerRef = useRef(null);
 
     useEffect(() => {
+        const isMobile = window.innerWidth < 768;
+
+        if (isMobile) {
+            // Show slides normally on mobile (no animation)
+            gsap.set(".skill-slide", {
+                clearProps: "all",
+                position: "relative",
+                autoAlpha: 1
+            });
+            return;
+        }
+
         let ctx = gsap.context(() => {
+            gsap.config({
+                force3D: true
+            });
+
             const slides = gsap.utils.toArray(".skill-slide");
 
-            // Initial setup
+            // Initial setup with proper z-index
             gsap.set(slides, { autoAlpha: 0, scale: 1.1 });
-            gsap.set(slides[0], { autoAlpha: 1, scale: 1 });
+            gsap.set(slides[0], { autoAlpha: 1, scale: 1, zIndex: slides.length });
+
+            // Set z-index for all slides
+            slides.forEach((slide, i) => {
+                gsap.set(slide, { zIndex: slides.length - i });
+            });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top top",
-                    end: `+=${slides.length * 100}%`,
+                    end: `+=${slides.length * 150}%`,
                     scrub: 1.2,
                     pin: true,
+                    pinSpacing: true,
                     anticipatePin: 1,
                 }
             });
@@ -149,8 +171,8 @@ export default function ParallaxSkillScroll() {
 
                 tl.to(current, {
                     autoAlpha: 0,
-                    duration: 0.4
-                }, i + 0.6);
+                    duration: 0.6
+                }, i + 0.8);
 
                 // Bring in next slide
                 tl.to(next, {
@@ -162,15 +184,17 @@ export default function ParallaxSkillScroll() {
             });
 
             // Footer reveal
-            gsap.from(footerRef.current, {
-                y: 100,
-                opacity: 0,
-                scrollTrigger: {
-                    trigger: footerRef.current,
-                    start: "top 90%",
-                    toggleActions: "play none none reverse"
-                }
-            });
+            if (footerRef.current) {
+                gsap.from(footerRef.current, {
+                    y: 100,
+                    opacity: 0,
+                    scrollTrigger: {
+                        trigger: footerRef.current,
+                        start: "top 90%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            }
 
         }, containerRef);
 
@@ -205,6 +229,7 @@ export default function ParallaxSkillScroll() {
                             <img
                                 src={skill.image}
                                 alt={skill.title}
+                                loading="lazy"
                                 className="bg-image w-full h-full object-cover opacity-70 scale-110"
                             />
                             <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent" />
@@ -212,10 +237,10 @@ export default function ParallaxSkillScroll() {
                         </div>
 
                         {/* Main Content Grid */}
-                        <div className="relative h-full w-full max-w-7xl mx-auto px-8 grid grid-cols-12 gap-8 items-center">
+                        <div className="relative h-full w-full max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
 
                             {/* Left: Typography */}
-                            <div className="text-content col-span-7 space-y-6">
+                            <div className="text-content col-span-1 md:col-span-7 space-y-4 md:space-y-6 text-center md:text-left">
                                 <div
                                     className="inline-flex items-center gap-3 text-[11px] tracking-[0.4em] uppercase font-medium"
                                     style={{ color: skill.color }}
@@ -224,7 +249,7 @@ export default function ParallaxSkillScroll() {
                                     {skill.subtitle}
                                 </div>
 
-                                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] uppercase">
+                                <h1 className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.9] uppercase">
                                     {skill.title.split("\n").map((line, idx) => (
                                         <div key={idx} className="block">{line}</div>
                                     ))}
@@ -236,7 +261,7 @@ export default function ParallaxSkillScroll() {
                             </div>
 
                             {/* Right: Skill Info Panel */}
-                            <div className="skill-panel col-span-5 flex justify-end">
+                            <div className="skill-panel col-span-1 md:col-span-5 flex justify-center md:justify-end">
                                 <div className="bg-black/40 backdrop-blur-xl border border-white/10 p-8 rounded-2xl w-full max-w-sm space-y-6">
 
                                     {/* Skill Header */}
@@ -306,7 +331,7 @@ export default function ParallaxSkillScroll() {
             </div>
 
             {/* Learning Journey Section (Separate from slides) */}
-            <div className="relative bg-neutral-950 py-32 px-8">
+            <div ref={footerRef} className="relative bg-neutral-950 py-32 px-8">
                 <div className="max-w-6xl mx-auto">
                     <div className="mb-20 text-center">
                         <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Learning Journey</h2>
@@ -321,13 +346,13 @@ export default function ParallaxSkillScroll() {
                             {timeline.map((item, idx) => (
                                 <div
                                     key={idx}
-                                    className={`timeline-item flex items-center gap-8 ${idx % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                                    className={`timeline-item flex flex-col md:flex-row items-center gap-6 md:gap-8 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
                                 >
-                                    <div className={`w-1/2 ${idx % 2 === 0 ? 'text-right' : 'text-left'}`}>
+                                    <div className="w-full md:w-1/2 text-center md:text-left">
                                         <div className="inline-block p-6 bg-white/5 backdrop-blur border border-white/10 rounded-2xl hover:border-amber-500/50 transition-colors">
                                             <div className="text-3xl mb-2">{item.icon}</div>
                                             <div className="text-amber-400 text-sm font-bold mb-1">{item.year}</div>
-                                            <div className="text-white/80 text-sm">{item.text}</div>
+                                            <div className="text-white/80 text-sm">{item.title}</div>
                                             <div className="text-amber-400 text-sm font-bold mb-1">{item.desc}</div>
                                         </div>
                                     </div>
@@ -341,7 +366,7 @@ export default function ParallaxSkillScroll() {
                     {/* Mentors Section */}
                     <div className="mt-32">
                         <h3 className="text-2xl font-bold text-center mb-12 text-white/80">Key Mentors</h3>
-                        <div className="grid md:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                             {creators.map((creator, idx) => (
                                 <div
                                     key={idx}

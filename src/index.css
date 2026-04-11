@@ -1,76 +1,86 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: "Poppins", sans-serif;
-  scroll-behavior: auto !important;
+  background: #000;
+  margin: 0;
+  padding-top: 70px;
 }
 
 h1, h2 {
   font-family: "Roboto", sans-serif;
 }
 
-@layer utilities {
-  .gradient {
-    min-height: 100vh;
-    background: linear-gradient(
-      -45deg,
-      #0f2027,
-      #203a43,
-      #2c5364
-    );
-  }
-}
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0px); }
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
-/* optional small difference */
-.resume-btn {
-  margin-left: 20px;
-}
-.social-icons {
-  display: flex;
-  gap: 20px;
-}
-
-.social-icons a {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
+/* ================= NAVBAR ================= */
+nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  color: #fff;
-  font-size: 18px;
-  text-decoration: none;
-
-  transition: all 0.3s ease;
+  justify-content: space-between;
+  padding: 0.75rem 5%;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* hover glow effect */
-.social-icons a:hover {
-  background: linear-gradient(135deg, #00f2ff, #5773ff);
-  box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
-  transform: translateY(-4px);
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
+
+/* ================= HERO SECTION ================= */
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 120px 8% 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 3rem;
+}
+
+/* LEFT SIDE */
+.hero-left {
+  flex: 1;
+  max-width: 600px;
+}
+
+/* RIGHT SIDE (IMAGE) */
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-right img {
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+}
+
+/* ================= BUTTONS ================= */
+.hero-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
 .primary-btn {
-  /* Base styles */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(0.75rem, 3vw, 1rem) clamp(1.5rem, 5vw, 1.75rem);
-  border-radius: 2rem;
+  padding: 12px 24px;
+  border-radius: 30px;
   background: linear-gradient(135deg, #cf0a94ec, #d82898);
   color: #fff;
   font-weight: 600;
@@ -78,412 +88,109 @@ h1, h2 {
   cursor: pointer;
   text-decoration: none;
   transition: all 0.3s ease;
-  font-size: clamp(0.875rem, 2vw, 1rem);
-  min-height: 44px;
-  width: 100%;
-  max-width: 300px;
+  min-width: 180px;
   text-align: center;
-  margin: 0 auto 1rem; /* Center and add bottom margin for stacking */
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  whitespace: nowrap;
 }
 
-/* Remove the resume-btn specific margin */
-.resume-btn {
-  margin-left: 0;
+.primary-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(216, 40, 152, 0.5);
+  background: linear-gradient(135deg, #d82898, #cf0a94ec);
 }
 
-/* Responsive variations */
-@media (min-width: 480px) {
+/* ================= SOCIAL ICONS ================= */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 2rem;
+}
+
+.social-icons a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  background: linear-gradient(135deg, #00f2ff, #5773ff);
+  box-shadow: 0 0 20px rgba(0, 242, 255, 0.6);
+  transform: translateY(-4px);
+}
+
+/* ================= TYPOGRAPHY ================= */
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: #aaa;
+}
+
+.hero-description {
+  margin-top: 1rem;
+  font-size: 1rem;
+  opacity: 0.7;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  /* HERO STACK */
+  .hero-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 100px 5% 40px;
+    gap: 2rem;
+  }
+
+  .hero-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-right img {
+    max-width: 280px;
+  }
+
+  /* BUTTON FIX (IMPORTANT) */
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+  }
+
   .primary-btn {
-    width: auto;
-    min-width: 140px;
-    margin: 0.5rem; /* Uniform margin around each button */
-    display: inline-block;
-    max-width: none; /* Remove the max-width constraint */
-  }
-}
-
-@media (min-width: 768px) {
-  .primary-btn {
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-    min-width: 160px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .primary-btn {
-    padding: 1rem 2.25rem;
-    min-width: 180px;
-  }
-}
-/* SECTION */
-/* SECTION */
-.skills-section {
-  height: 100vh;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Prevents scrollbars if animations go wide */
-}
-
-/* MAIN WRAPPER */
-.skills-container {
-  position: relative;
-  width: 500px;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* CENTER CIRCLE */
-.skills-center {
-  position: absolute;
-  background: #000;
-  color: #fff;
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-  font-weight: 700;
-  border: 2px solid #fff;
-  z-index: 10;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-}
-
-/* SKILL POSITION AROUND CIRCLE */
-.skill-item {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  /* We offset by half the icon size (-37.5px) so the ROTATION 
-     happens from the exact center of the icon 
-  */
-  width: 75px;
-  height: 75px;
-  margin-left: -37.5px; 
-  margin-top: -37.5px;
-  
-  /* Radius calculation */
-  --r: 210px; 
-  
-  transform: 
-    rotate(calc(360deg / var(--count) * var(--i))) 
-    translate(var(--r)) 
-    rotate(calc(-360deg / var(--count) * var(--i)));
-    
-  z-index: 1;
-  transition: z-index 0s; /* Instant z-index switch */
-}
-
-/* CRITICAL FIX: LIFT ITEM ON HOVER */
-/* This ensures the tooltip shows ON TOP of neighboring icons */
-.skill-item:hover {
-  z-index: 100;
-}
-
-/* SKILL ICON */
-.skill-icon {
-  width: 100%;
-  height: 100%;
-  background: #000;
-  color: #fff;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 30px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skill-item:hover .skill-icon {
-  transform: scale(1.15);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-  background: #111;
-}
-
-/* TOOLTIP */
-.skill-tooltip {
-  position: absolute;
-  /* Position tooltip relative to the icon */
-  top: -90px; 
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  width: 180px;
-  padding: 15px;
-  background: rgba(20, 20, 20, 0.95);
-  color: #fff;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  opacity: 0;
-  visibility: hidden; /* Hides it from mouse events when not visible */
-  pointer-events: none;
-  transition: all 0.3s ease;
-  text-align: center;
-  backdrop-filter: blur(5px);
-}
-
-.skill-tooltip h4 {
-  margin: 0 0 5px 0;
-  font-size: 16px;
-  color: #4facfe; /* Added a pop of color for title */
-}
-
-.skill-tooltip p {
-  font-size: 12px;
-  margin: 0;
-  color: #ccc;
-  line-height: 1.4;
-}
-
-/* SHOW TOOLTIP ON HOVER */
-.skill-item:hover .skill-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0); /* Subtle slide up animation */
-}
-
-/* RESPONSIVE ADJUSTMENTS */
-@media (max-width: 600px) {
-  .skills-container {
-    width: 350px;
-    height: 350px;
-  }
-  
-  .skills-center {
-    width: 100px;
-    height: 100px;
-    font-size: 16px;
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 20px;
+    font-size: 0.9rem;
   }
 
-  .skill-item {
-    width: 50px;
-    height: 50px;
-    margin-left: -25px;
-    margin-top: -25px;
-    --r: 130px; /* Smaller radius for mobile */
-  }
-
-  .skill-icon {
-    font-size: 20px;
-  }
-  
-  /* Adjust tooltip for mobile to not go off-screen */
-  .skill-tooltip {
-    width: 140px;
-    top: -110px; /* Push it higher */
+  /* SOCIAL CENTER */
+  .social-icons {
+    justify-content: center;
+    width: 100%;
   }
 }
-
-SECTION
-.skills-section {
-  height: 100vh;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* Prevents scrollbars if animations go wide */
+nav {
+  width: 100vw;
+  left: 0;
+  right: 0;
 }
-
-/* MAIN WRAPPER */
-.skills-container {
-  position: relative;
-  width: 500px;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* CENTER CIRCLE */
-.skills-center {
-  position: absolute;
-  background: #000;
-  color: #fff;
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-  font-weight: 700;
-  border: 2px solid #fff;
-  z-index: 10;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-}
-
-/* SKILL POSITION AROUND CIRCLE */
-.skill-item {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  /* We offset by half the icon size (-37.5px) so the ROTATION 
-     happens from the exact center of the icon 
-  */
-  width: 75px;
-  height: 75px;
-  margin-left: -37.5px; 
-  margin-top: -37.5px;
-  
-  /* Radius calculation */
-  --r: 210px; 
-  
-  transform: 
-    rotate(calc(360deg / var(--count) * var(--i))) 
-    translate(var(--r)) 
-    rotate(calc(-360deg / var(--count) * var(--i)));
-    
-  z-index: 1;
-  transition: z-index 0s; /* Instant z-index switch */
-}
-
-/* CRITICAL FIX: LIFT ITEM ON HOVER */
-/* This ensures the tooltip shows ON TOP of neighboring icons */
-.skill-item:hover {
-  z-index: 100;
-}
-
-/* SKILL ICON */
-.skill-icon {
-  width: 100%;
-  height: 100%;
-  background: #000;
-  color: #fff;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 30px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.skill-item:hover .skill-icon {
-  transform: scale(1.15);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-  background: #111;
-}
-
-/* TOOLTIP */
-.skill-tooltip {
-  position: absolute;
-  /* Position tooltip relative to the icon */
-  top: -90px; 
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  width: 180px;
-  padding: 15px;
-  background: rgba(20, 20, 20, 0.95);
-  color: #fff;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  opacity: 0;
-  visibility: hidden; /* Hides it from mouse events when not visible */
-  pointer-events: none;
-  transition: all 0.3s ease;
-  text-align: center;
-  backdrop-filter: blur(5px);
-}
-
-.skill-tooltip h4 {
-  margin: 0 0 5px 0;
-  font-size: 16px;
-  color: #4facfe; /* Added a pop of color for title */
-}
-
-.skill-tooltip p {
-  font-size: 12px;
-  margin: 0;
-  color: #ccc;
-  line-height: 1.4;
-}
-
-/* SHOW TOOLTIP ON HOVER */
-.skill-item:hover .skill-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0); /* Subtle slide up animation */
-}
-
-/* RESPONSIVE ADJUSTMENTS */
-@media (max-width: 600px) {
-  .skills-container {
-    width: 350px;
-    height: 350px;
-  }
-  
-  .skills-center {
-    width: 100px;
-    height: 100px;
-    font-size: 16px;
-  }
-
-  .skill-item {
-    width: 50px;
-    height: 50px;
-    margin-left: -25px;
-    margin-top: -25px;
-    --r: 130px; /* Smaller radius for mobile */
-  }
-
-  .skill-icon {
-    font-size: 20px;
-  }
-  
-  /* Adjust tooltip for mobile to not go off-screen */
-  .skill-tooltip {
-    width: 140px;
-    top: -110px; /* Push it higher */
-  }
-}
-/* ... existing CSS ... */
-
-/* ROTATING RING */
-.skills-ring {
-  position: absolute;
-  /* Diameter = 2 * Radius (210px * 2 = 420px) */
-  width: 420px; 
-  height: 420px;
-  border: 1px dashed rgba(255, 255, 255, 0.3); /* Faint dashed line */
-  border-radius: 50%;
-  
-  /* Centering */
-  top: 50%;
-  left: 50%;
-  /* We use a specific transform in keyframes, so we don't need it here usually,
-     but good for static fallback */
-  transform: translate(-50%, -50%);
-  
-  z-index: 0; /* Behind the icons */
-  pointer-events: none; /* Let clicks pass through */
-  
-  /* The rotation animation */
-  animation: spin-ring 30s linear infinite;
-}
-
-/* ROTATION ANIMATION */
-@keyframes spin-ring {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-/* RESPONSIVE UPDATE FOR RING */
-@media (max-width: 600px) {
-  /* ... existing mobile styles ... */
-
-  /* Resize ring for mobile radius (130px * 2 = 260px) */
-  .skills-ring {
-    width: 260px;
-    height: 260px;
-  }
-}
-
-
