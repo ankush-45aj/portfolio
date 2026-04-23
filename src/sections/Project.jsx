@@ -1,7 +1,6 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import parallax from "../assets/image1.png";
 import portifolioImage from "../assets/portifolioImage.png"
 
@@ -9,30 +8,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function useHorizontalScroll({ sectionRef, trackRef, progressRef }) {
     useEffect(() => {
-        // 1️⃣ Initialize Lenis
-        const lenis = new Lenis({
-            smooth: false, // Disable smooth scrolling for faster response
-            duration: 0.7, // Lower duration for snappier feel
-            wheelMultiplier: 1.5, // Increase multiplier for faster scroll
-            touchMultiplier: 1.5,
-            easing: (t) => t, // Linear easing for instant scroll
-        });
-
-        // 2️⃣ Sync Lenis → ScrollTrigger
-        lenis.on("scroll", ScrollTrigger.update);
-
-        // 3️⃣ Use GSAP ticker (CRITICAL FIX)
-        const tickerFn = (time) => {
-            lenis.raf(time * 1000);
-        };
-        gsap.ticker.add(tickerFn);
-        gsap.ticker.lagSmoothing(0);
-
-        // 4️⃣ GSAP context
         const ctx = gsap.context(() => {
+            if (!trackRef.current) return;
             const totalWidth = trackRef.current.scrollWidth;
             const viewportWidth = window.innerWidth;
             const scrollDistance = totalWidth - viewportWidth;
+
+            if (scrollDistance <= 0) return;
 
             const tween = gsap.to(trackRef.current, {
                 x: -scrollDistance,
@@ -44,27 +26,20 @@ export function useHorizontalScroll({ sectionRef, trackRef, progressRef }) {
                 start: "top top",
                 end: () => `+=${scrollDistance}`,
                 pin: true,
-                scrub: 1,
+                scrub: true,
                 animation: tween,
                 invalidateOnRefresh: true,
                 onUpdate: (self) => {
                     if (progressRef?.current) {
-                        gsap.to(progressRef.current, {
-                            scaleX: self.progress,
-                            transformOrigin: "left",
-                            ease: "none",
-                            duration: 0.1,
-                        });
+                        progressRef.current.style.transform = `scaleX(${self.progress})`;
+                        progressRef.current.style.transformOrigin = "left";
                     }
                 },
             });
         }, sectionRef);
 
-        // 5️⃣ Cleanup
         return () => {
             ctx.revert();
-            gsap.ticker.remove(tickerFn);
-            lenis.destroy();
         };
     }, []);
 }

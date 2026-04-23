@@ -328,24 +328,24 @@ export default function ParallaxSkillScroll() {
 
                     {/* Timeline */}
                     <div className="relative">
-                        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-white/10" />
+                        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-white/10 hidden md:block" />
 
-                        <div className="space-y-24">
+                        <div className="space-y-12 md:space-y-24">
                             {timeline.map((item, idx) => (
                                 <div
                                     key={idx}
                                     className={`timeline-item flex flex-col md:flex-row items-center gap-6 md:gap-8 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
                                 >
                                     <div className="w-full md:w-1/2 text-center md:text-left">
-                                        <div className="inline-block p-6 bg-white/5 backdrop-blur border border-white/10 rounded-2xl hover:border-amber-500/50 transition-colors">
+                                        <div className="inline-block p-6 bg-white/5 backdrop-blur border border-white/10 rounded-2xl hover:border-amber-500/50 transition-colors w-full max-w-sm md:max-w-none">
                                             <div className="text-3xl mb-2">{item.icon}</div>
                                             <div className="text-amber-400 text-sm font-bold mb-1">{item.year}</div>
-                                            <div className="text-white/80 text-sm">{item.title}</div>
-                                            <div className="text-amber-400 text-sm font-bold mb-1">{item.desc}</div>
+                                            <div className="text-white/80 text-xl font-bold mb-1">{item.title}</div>
+                                            <div className="text-white/60 text-sm">{item.desc}</div>
                                         </div>
                                     </div>
-                                    <div className="w-4 h-4 bg-amber-500 rounded-full border-4 border-black z-10" />
-                                    <div className="w-1/2" />
+                                    <div className="w-4 h-4 bg-amber-500 rounded-full border-4 border-black z-10 hidden md:block" />
+                                    <div className="w-1/2 hidden md:block" />
                                 </div>
                             ))}
                         </div>
