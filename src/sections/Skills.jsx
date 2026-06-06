@@ -71,6 +71,8 @@ export default function ParallaxSkillScroll() {
 
     useEffect(() => {
         if (typeof window === "undefined") return;
+        ScrollTrigger.normalizeScroll(true);
+
 
         const slides = gsap.utils.toArray(".skill-slide");
 
@@ -86,12 +88,29 @@ export default function ParallaxSkillScroll() {
             });
 
             // One master timeline — same on desktop & mobile
+            // const tl = gsap.timeline({
+            //     scrollTrigger: {
+            //         trigger: containerRef.current,
+            //         start: "top top",
+            //         end: `+=${slides.length * 150}%`,
+            //         scrub: 1.2,
+            //         pin: true,
+            //         pinSpacing: true,
+            //         anticipatePin: 1,
+            //     }
+            // });
+
+
+            const isMobile = window.innerWidth < 768;
+
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top top",
-                    end: `+=${slides.length * 150}%`,
-                    scrub: 1.2,
+                    end: isMobile
+                        ? `+=${slides.length * 450}%`
+                        : `+=${slides.length * 250}%`,
+                    scrub: isMobile ? 2.5 : 1.2,
                     pin: true,
                     pinSpacing: true,
                     anticipatePin: 1,
@@ -118,6 +137,8 @@ export default function ParallaxSkillScroll() {
                     i + 0.5
                 );
             });
+
+
         }, containerRef);
 
         return () => ctx.revert();
