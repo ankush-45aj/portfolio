@@ -108,9 +108,9 @@ export default function ParallaxSkillScroll() {
                     trigger: containerRef.current,
                     start: "top top",
                     end: isMobile
-                        ? `+=${slides.length * 450}%`
-                        : `+=${slides.length * 250}%`,
-                    scrub: isMobile ? 2.5 : 1.2,
+                        ? `+=${slides.length * 350}%`
+                        : `+=${slides.length * 230}%`,
+                    scrub: isMobile ? 2 : 1,
                     pin: true,
                     pinSpacing: true,
                     anticipatePin: 1,
