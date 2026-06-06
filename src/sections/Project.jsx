@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import parallax from "../assets/image1.png";
 import portifolioImage from "../assets/portifolioImage.png"
+import wedding_image from "../assets/wedding_image.png"
+import Filesharing from "../assets/File_sharing.png"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,17 +53,18 @@ export function useHorizontalScroll({ sectionRef, trackRef, progressRef }) {
 const projects = [
     {
         id: 1,
-        title: "AI Dashboard",
-        image: "https://via.placeholder.com/500x300",
-        github: "https://github.com/yourname/ai-dashboard",
-        live: "https://ai-dashboard.live",
+        title: "Wedding portfolio",
+        image: wedding_image,
+        github: " https://github.com/ankush-45aj/wedding-portfolio-",
+        live: "https://dee-photography.vercel.app/",
+
     },
     {
         id: 2,
-        title: "Banking App",
-        image: "https://via.placeholder.com/500x300",
-        github: "https://github.com/yourname/banking-app",
-        live: "https://banking-app.live",
+        title: "File sharing website",
+        image: Filesharing,
+        github: "https://github.com/ankush-45aj/file_sharing_website",
+        live: "https://filesharingaa.netlify.app/",
     },
     {
         id: 3,
