@@ -41,7 +41,7 @@ export default function About() {
                     {/* STATS */}
                     <div className="mt-5 grid grid-cols-3 gap-1 max-w-xl">
                         {[
-                            { title: "Experience", value: "1+ Years" },
+                            { title: "Experience", value: "2+ Years" },
                             { title: "Specialty", value: " Full Stack, AI&ML" },
                             { title: "Focus", value: "UI & UX, performance" },
                         ].map((item) => (
