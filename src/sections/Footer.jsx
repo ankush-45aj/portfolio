@@ -119,10 +119,10 @@ export default function SplineFooter() {
                 )}
             </div>
 
-            <div ref={bubbleRef} className="ai-bubble" onClick={() => setShowChat(true)}>
-                <span className="bubble-emoji">🤖</span>
-                <div className={`chat-box ${showChat ? "visible" : ""}`}>System Online</div>
-            </div>
+            {/* <div ref={bubbleRef} className="ai-bubble" onClick={() => setShowChat(true)}>
+
+
+            </div> */}
 
             <div ref={textRef} className="footer-content">
                 <h2>Let's Build Something Intelligent</h2>
