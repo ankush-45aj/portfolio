@@ -194,3 +194,96 @@ nav {
   left: 0;
   right: 0;
 }
+
+/* ================= CINEMATIC HERO PORTRAIT ================= */
+
+.hero-portrait-wrapper {
+  --reveal-x: 50%;
+  --reveal-y: 50%;
+  --reveal-radius: 0px;
+  --reveal-opacity: 0;
+  position: relative;
+  justify-self: end;
+  width: 100%;
+  height: min(82vh, 50rem);
+  overflow: hidden;
+  pointer-events: all;
+  isolation: isolate;
+  cursor: crosshair;
+}
+
+.hero-portrait-img,
+.hero-portrait-armour,
+.hero-portrait-armour-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-portrait-img {
+  filter: grayscale(0.18) contrast(1.04);
+  /* Restore the previous, larger fixed composition. This does not animate. */
+  transform: scale(1.18);
+  transform-origin: center center;
+}
+
+.hero-portrait-armour {
+  opacity: var(--reveal-opacity);
+  filter: brightness(1.05) contrast(1.05);
+  mask-image: radial-gradient(circle var(--reveal-radius) at var(--reveal-x) var(--reveal-y), #000 0%, #000 36%, rgba(0, 0, 0, 0.92) 53%, rgba(0, 0, 0, 0.47) 73%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle var(--reveal-radius) at var(--reveal-x) var(--reveal-y), #000 0%, #000 36%, rgba(0, 0, 0, 0.92) 53%, rgba(0, 0, 0, 0.47) 73%, transparent 100%);
+  will-change: mask-image, opacity, filter;
+}
+
+.hero-portrait-armour-image {
+  /* The supplied armour artwork has a larger, square crop. This permanent
+     calibration aligns its eyes and hands with the normal 4:3 portrait while
+     leaving the mask itself exactly under the pointer. */
+  transform: translate(-20px, 30px) scale(0.999);
+  transform-origin: center center;
+}
+
+.hero-portrait-aura,
+.hero-portrait-smoke {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--reveal-opacity);
+  will-change: opacity;
+}
+
+.hero-portrait-aura {
+  display: none;
+}
+
+.hero-portrait-smoke {
+  display: none;
+}
+
+.hero-portrait-dust {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-portrait-dust span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+  will-change: transform, opacity;
+}
+
+@media (max-width: 767px) {
+  .hero-portrait-wrapper {
+    display: none;
+  }
+}
